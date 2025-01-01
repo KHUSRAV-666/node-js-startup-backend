@@ -1,0 +1,23 @@
+{
+  "name": "node-js-stratup",
+  "version": "1.0.0",
+  "description": "youtube ---> Flutter ECommerce App with Admin Panel | Flutter E Commerce App | Flutter Tutorial for Beginners",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KHUSRAV-666/node-js-startup-backend.git"
+  },
+  "keywords": [
+    "javascript",
+    "nodejs"
+  ],
+  "author": "khusrav asalmamadov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KHUSRAV-666/node-js-startup-backend/issues"
+  },
+  "homepage": "https://github.com/KHUSRAV-666/node-js-startup-backend#readme"
+}
