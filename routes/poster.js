@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Poster = require('../model/poster');
+const Poster = require('../model/poster.model');
 const { uploadPosters } = require('../uploadFile');
 const multer = require('multer');
 const asyncHandler = require('express-async-handler');
@@ -8,7 +8,7 @@ const asyncHandler = require('express-async-handler');
 // Get all posters
 router.get('/', asyncHandler(async (req, res) => {
     try {
-        const posters = await Poster.find({});
+        const posters = await Poster.findAll();
         res.json({ success: true, message: "Posters retrieved successfully.", data: posters });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
@@ -19,7 +19,7 @@ router.get('/', asyncHandler(async (req, res) => {
 router.get('/:id', asyncHandler(async (req, res) => {
     try {
         const posterID = req.params.id;
-        const poster = await Poster.findById(posterID);
+        const poster = await Poster.findByPk(posterID);
         if (!poster) {
             return res.status(404).json({ success: false, message: "Poster not found." });
         }
@@ -102,7 +102,7 @@ router.put('/:id', asyncHandler(async (req, res) => {
             }
 
             try {
-                const updatedPoster = await Poster.findByIdAndUpdate(categoryID, { posterName: posterName, imageUrl: image }, { new: true });
+                const updatedPoster = await Poster.update(categoryID, { posterName: posterName, imageUrl: image }, { new: true });
                 if (!updatedPoster) {
                     return res.status(404).json({ success: false, message: "Poster not found." });
                 }
@@ -123,10 +123,11 @@ router.put('/:id', asyncHandler(async (req, res) => {
 router.delete('/:id', asyncHandler(async (req, res) => {
     const posterID = req.params.id;
     try {
-        const deletedPoster = await Poster.findByIdAndDelete(posterID);
+        const deletedPoster = await Poster.findByPk(posterID);
         if (!deletedPoster) {
             return res.status(404).json({ success: false, message: "Poster not found." });
         }
+        await deletedPoster.destroy();
         res.json({ success: true, message: "Poster deleted successfully." });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });

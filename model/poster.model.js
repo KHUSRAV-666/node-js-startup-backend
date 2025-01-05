@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/database.config"); // Импортируем sequelize из конфигурации
 
 const Poster = sequelize.define(
-  "Category",
+  "Poster",
   {
     posterName: {
       type: DataTypes.STRING,
