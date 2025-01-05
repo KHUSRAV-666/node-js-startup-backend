@@ -1,18 +1,12 @@
-# Node.js
+# Исключить node_modules
 node_modules/
-npm-debug.log
+
+# Исключить файлы окружения
 .env
 
-# Logs
-logs/
+# Исключить логи
 *.log
 
-# Compiled files
-dist/
-build/
-
-# OS/IDE-specific files
+# Исключить файлы ОС
 .DS_Store
 Thumbs.db
-.vscode/
-.idea/
