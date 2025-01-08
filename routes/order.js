@@ -102,13 +102,11 @@ router.post(
       !paymentMethod ||
       !orderTotal
     ) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message:
-            "User ID, items, totalPrice, shippingAddress, paymentMethod, and orderTotal are required.",
-        });
+      return res.status(400).json({
+        success: false,
+        message:
+          "User ID, items, totalPrice, shippingAddress, paymentMethod, and orderTotal are required.",
+      });
     }
 
     try {

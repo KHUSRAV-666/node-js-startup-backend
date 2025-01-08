@@ -1,6 +1,7 @@
 const Brand = require("./model/brand.model");
 const Category = require("./model/category.model");
 const Coupon = require("./model/coupon.model");
+const { OrderItem, Order } = require("./model/order.model");
 const Product = require("./model/product.model");
 const SubCategory = require("./model/subcategory.model");
 const Variant = require("./model/variant.model");
@@ -85,15 +86,15 @@ module.exports = () => {
   });
   VariantType.hasMany(Variant, { foreignKey: "variantTypeId", as: "variants" });
 
-  // // Связь между User и Order: Один пользователь может иметь много заказов
+  // Связь между User и Order: Один пользователь может иметь много заказов
   // User.hasMany(Order, { foreignKey: "userID" });
   // Order.belongsTo(User, { foreignKey: "userID" });
 
-  // // Связь между Order и Coupon: Один заказ может иметь один купон
+  // Связь между Order и Coupon: Один заказ может иметь один купон
   // Order.belongsTo(Coupon, { foreignKey: "couponCode" });
   // Coupon.hasMany(Order, { foreignKey: "couponCode" });
 
-  // // Связь многие ко многим между Order и Product через OrderItem
-  // Order.belongsToMany(Product, { through: OrderItem, foreignKey: "orderID" });
-  // Product.belongsToMany(Order, { through: OrderItem, foreignKey: "productID" });
+  // Связь многие ко многим между Order и Product через OrderItem
+  Order.belongsToMany(Product, { through: OrderItem, foreignKey: "orderId" });
+  Product.belongsToMany(Order, { through: OrderItem, foreignKey: "productId" });
 };

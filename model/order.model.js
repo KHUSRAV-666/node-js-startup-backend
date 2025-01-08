@@ -6,7 +6,7 @@ const Coupon = require('./coupon.model'); // Импорт модели Coupon
 
 // Определение модели Order
 const Order = sequelize.define('Order', {
-  userID: {
+  userId: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
@@ -58,7 +58,7 @@ const Order = sequelize.define('Order', {
 
 // Определение таблицы OrderItem для связи "многие ко многим" между Order и Product
 const OrderItem = sequelize.define('OrderItem', {
-  orderID: {
+  orderId: {
     type: DataTypes.INTEGER,
     references: {
       model: Order,
@@ -66,7 +66,7 @@ const OrderItem = sequelize.define('OrderItem', {
     },
     allowNull: false,
   },
-  productID: {
+  productId: {
     type: DataTypes.INTEGER,
     references: {
       model: Product,
